@@ -1,33 +1,29 @@
 version: '4.2'
-
 services:
   web:
-    image: marinagr17/django_tutorial
+    image: marinagr17/django_tutorial:${VERSION_DT}
     restart: always
     environment:
-      DB_HOST: db
-      DB_NAME: tutorial
-      DB_USER: tutorial
-      DB_PASSWORD: secret
-
-      DJANGO_SUPERUSER_USERNAME: admin
-      DJANGO_SUPERUSER_EMAIL: admin@example.com
-      DJANGO_SUPERUSER_PASSWORD: admin123
+      DB_HOST: ${DB_HOST}
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DJANGO_SUPERUSER_USERNAME: ${DJANGO_SUPERUSER_USERNAME}
+      DJANGO_SUPERUSER_EMAIL: ${DJANGO_SUPERUSER_EMAIL}
+      DJANGO_SUPERUSER_PASSWORD: ${DJANGO_SUPERUSER_PASSWORD}
     ports:
-      - "8000:8000"
+      - "${PUERTO}:8000"
     depends_on:
       - db
-
   db:
-    image: mariadb
+    image: mariadb:${VERSION_MDB}
     restart: always
     environment:
-      MYSQL_DATABASE: tutorial
-      MYSQL_USER: tutorial
-      MYSQL_PASSWORD: secret
-      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     volumes:
       - mariadb_data:/var/lib/mysql
-
 volumes:
   mariadb_data:

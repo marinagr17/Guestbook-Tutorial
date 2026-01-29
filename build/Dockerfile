@@ -1,7 +1,14 @@
 # syntax=docker/dockerfile:1
-FROM python:3.14.2-trixie
+FROM python:3.11-slim
 
 WORKDIR /app
+
+# Install system dependencies for mysqlclient
+RUN apt-get update && apt-get install -y \   
+    default-libmysqlclient-dev \             
+    build-essential \                        
+    pkg-config \                             
+    && rm -rf /var/lib/apt/lists/*  
 
 COPY app/ .
 COPY entrypoint.sh .
