@@ -129,3 +129,7 @@ STATIC_DIRS = [BASE_DIR / "static"]
 DEFAULT_AUTO_FIELD='django.db.models.AutoField' 
 
 STATIC_ROOT = BASE_DIR / "static"
+
+# Configuración de CSRF_TRUSTED_ORIGINS desde variable de entorno
+csrf_origin = os.getenv('CSRF_TRUSTED_ORIGIN')
+CSRF_TRUSTED_ORIGINS = [csrf_origin] if csrf_origin else []
