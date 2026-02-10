@@ -130,14 +130,3 @@ DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 csrf_origins = os.getenv('CSRF_TRUSTED_ORIGINS', '')
 CSRF_TRUSTED_ORIGINS = [origin.strip() for origin in csrf_origins.split(',') if origin.strip()]
 
-import sys
-
-# Detectar si estamos en modo test
-if 'test' in sys.argv or 'DJANGO_SETTINGS_MODULE' in os.environ and os.environ['DJANGO_SETTINGS_MODULE'].endswith('_test'):
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': ':memory:',
-        }
-    }
-    print("sando SQLite en memoria para tests")
