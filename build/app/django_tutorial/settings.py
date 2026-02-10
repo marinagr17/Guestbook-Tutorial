@@ -124,12 +124,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_DIRS = [BASE_DIR / "static"]
-
-DEFAULT_AUTO_FIELD='django.db.models.AutoField' 
-
 STATIC_ROOT = BASE_DIR / "static"
-
+DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 # Configuración de CSRF_TRUSTED_ORIGINS desde variable de entorno
-csrf_origin = os.getenv('CSRF_TRUSTED_ORIGIN')
-CSRF_TRUSTED_ORIGINS = [csrf_origin] if csrf_origin else []
+csrf_origins = os.getenv('CSRF_TRUSTED_ORIGINS', '')
+CSRF_TRUSTED_ORIGINS = [origin.strip() for origin in csrf_origins.split(',') if origin.strip()]
