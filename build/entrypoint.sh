@@ -11,4 +11,4 @@ python3 manage.py migrate --noinput
 python3 manage.py createsuperuser --noinput || true
 # || true evita errores si el superusuario ya está creado
 # Servidor de desarrollo
-exec python3 manage.py runserver 0.0.0.0:8000
+exec python3 manage.py runserver 0.0.0.0:8800
