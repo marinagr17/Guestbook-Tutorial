@@ -12,7 +12,7 @@ services:
       DJANGO_SUPERUSER_EMAIL: ${DJANGO_SUPERUSER_EMAIL}
       DJANGO_SUPERUSER_PASSWORD: ${DJANGO_SUPERUSER_PASSWORD}
     ports:
-      - "${PUERTO}:8000"
+      - "${PUERTO}:8800"
     depends_on:
       - db
   db:
